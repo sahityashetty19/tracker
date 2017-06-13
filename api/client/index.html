@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+<head>
+  <meta charset="utf-8" />
+  <title>AngularJS Plunker</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <script type="text/ng-template" id="add-car-form">
+     <form ng-submit="carVm.addCar()" name="vehicleForm" novalidate>
+            <div class="form-group">
+              <label for="vin">VIN</label>
+              <input type="text" 
+              required
+              name="vin"
+              class="form-control" 
+              ng-model="carVm.newCar.vin"
+              id="vin" placeholder="VIN">
+              <div class="errors" 
+                   ng-messages="vehicleForm.vin.$error"
+                   ng-if="vehicleForm.vin.$dirty">
+                <p ng-message="required">VIN is required</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="year">Year</label>
+              <input type="number" 
+              required
+              class="form-control" 
+              ng-model="carVm.newCar.year"
+              name="year"
+              max="2020"
+              min="1900"
+              id="year" 
+              placeholder="Year">
+              <div class="errors" 
+                   ng-messages="vehicleForm.year.$error"
+                   ng-if="vehicleForm.year.$dirty">
+                <p ng-message="required">Year is required</p>
+                <p ng-message="max">Year has to be between 1900 to 2020</p>
+                <p ng-message="min">Year has to be between 1900 to 2020</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="make">Make</label>
+              <input type="text" 
+              required
+              name="make"
+              class="form-control" 
+              ng-model="carVm.newCar.make"
+              id="make" placeholder="Make">
+              <div class="errors" 
+                  ng-messages="vehicleForm.make.$error"
+                  ng-if="vehicleForm.make.$dirty">
+                <p ng-message="required">Make is required</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="model">Model</label>
+              <input type="text" 
+              required
+              class="form-control" 
+              name="model"
+              ng-model="carVm.newCar.model"
+              id="model" placeholder="Model">
+              <div class="errors" 
+                ng-messages="vehicleForm.model.$error"
+                ng-if="vehicleForm.model.$dirty">
+                <p ng-message="required">Model is required</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lastServiceDate">Last Service Date</label>
+              <input type="datetime-local" 
+              required
+              class="form-control" 
+              name="lastServiceDate"
+              ng-model="carVm.newCar.lastServiceDate"
+              id="lastServiceDate" placeholder="Last Service Date">
+              <div class="errors" 
+                  ng-messages="vehicleForm.lastServiceDate.$error"
+                  ng-if="vehicleForm.lastServiceDate.$dirty">
+                <p ng-message="required">Last Service Date is required</p>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+  </script>
+</head>
+
+<body>
+  <div ng-controller="CarController as carVm" ng-init="carVm.title = 'CarTracker'">
+    <img ng-src="{{carVm.imageUrl}}">
+    
+    <hr>
+    <hr>
+    <h1>{{carVm.title}}</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4" ng-include="'add-car-form'">
+         
+        </div>
+        <div class="col-sm-8" ng-include="'table.tmpl.html'">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.angularjs.org/1.6.4/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.6.4/angular-messages.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
