@@ -1,0 +1,21 @@
+<div class="container">
+<div>
+    <h3>List of all alerts for Vin:{{vinNumber}}</h3>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Alert Priority</th>
+        <th>Alert Message</th>
+        <th>Time Stamp</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="alert in alerts ">
+        <td>{{alert.alertPriority}}</td>
+        <td>{{alert.alertMessage}}</td>
+        <td>{{alert.timestamp}}</td>
+    </tr>
+    </tbody>
+</table>
+</div>

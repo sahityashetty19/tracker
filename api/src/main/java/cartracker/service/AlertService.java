@@ -10,7 +10,7 @@ public interface AlertService {
 
     void createAlert(Reading reading, Vehicle vehicle);
 
-    List<Alert> getHighPriorityAlerts();
-
     List<Alert> getAllAlertsOfAVehicle(String vin);
+
+    List<Alert> getAllAlerts();
 }

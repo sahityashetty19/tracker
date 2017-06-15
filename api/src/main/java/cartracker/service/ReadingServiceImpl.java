@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -37,9 +38,14 @@ public class ReadingServiceImpl implements ReadingService {
                 returnedReading = readingRepository.storeReading(reading);
             }
         } else {
-            // throw exception no associated vehicle
+            // throw exception
         }
 
         return returnedReading;
+    }
+
+    @Override
+    public List<Reading> getAllReadingsOfAVehicle(String vin) {
+        return readingRepository.findReadingsOfAVehicle(vin);
     }
 }

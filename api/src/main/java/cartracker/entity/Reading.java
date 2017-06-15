@@ -7,6 +7,11 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Reading.findReadingsOfSingleVehicle",
+                query = "SELECT reading FROM Reading reading WHERE reading.vin=:vin")
+
+})
 public class Reading {
 
     @Id
@@ -23,7 +28,6 @@ public class Reading {
     private double latitude;
     private double longitude;
 
-    @Column(unique = true)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private Date timestamp;
 
