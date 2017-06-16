@@ -1,0 +1,28 @@
+<h3>List of all cars</h3>
+<input type="text" placeholder="Search Vehicle" class="form-control" ng-model="carVm.searchText">
+<br>
+<br>
+<table class="table table-bordered table-striped ">
+    <thead>
+    <tr ng-init="carVm.sorter='lastServiceDate'; carVm.sortOrder=false;">
+        <th>Track</th>
+        <th>VIN</th>
+        <th ng-click="carVm.sorter='year';carVm.sortOrder = !carVm.sortOrder;">Year</th>
+        <th>Make</th>
+        <th ng-click="carVm.sorter='model'; carVm.sortOrder = !carVm.sortOrder;">Model</th>
+        <th ng-click="carVm.sorter='lastServiceDate'; carVm.sortOrder = !carVm.sortOrder;">Last Service Date</th>
+        <th>Plot Speed</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-row" ng-repeat="car in carData | filter: carVm.searchText | orderBy:carVm.sorter:carVm.sortOrder">
+        <td ng-click="goToGeolocation()" class="glyphicon glyphicon-map-marker "></td>
+        <td id="rowclick"><a ui-sref="alertHistory({vinNumber: car.vin})">{{car.vin}}</a></td>
+        <td>{{car.year}}</td>
+        <td>{{car.make}}</td>
+        <td>{{car.model}}</td>
+        <td>{{car.lastServiceDate | date:'medium'}}</td>
+        <td><a ui-sref="plotSignal({vinNumber: car.vin})" class="glyphicon glyphicon-stats"></a></td>
+    </tr>
+    </tbody>
+</table>
